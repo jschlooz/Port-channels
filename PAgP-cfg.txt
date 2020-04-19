@@ -1,0 +1,82 @@
+! Desirable-Desirable
+hostname ACS01
+!
+no ip domain-lookup
+!
+!
+banner exec ^C
+************************************************************
+***                     DISCLAIMER                       ***
+***                                                      ***
+***     These configs are created by Jordi Schlooz:      ***
+***     https://github.com/jschlooz/                     ***
+***                                                      ***
+***     Please respect these banners in reuse of         ***
+***     this material.                                   ***
+***     These files have been created in my spare time.  ***
+***     For any questions you may always reach out       ***
+***     https://www.linkedin.com/in/jschlooz/            ***
+***                                                      ***
+************************************************************
+^C
+spanning-tree mode rapid-pvst
+!
+port-channel load-balance src-dst-ip
+!
+vlan 100
+ name SERVER
+vlan 200
+ name USER
+!
+! ===== PAgP Desirable =====
+int range e0/0-1
+ switchport trunk encaps dot1q
+ switchport mode trunk
+ channel-group 1 mode desirable
+!
+
+! Desirable-Desirable and Desirable-Auto
+hostname ACS02
+!
+no ip domain-lookup
+!
+!
+banner exec ^C
+************************************************************
+***                     DISCLAIMER                       ***
+***                                                      ***
+***     These configs are created by Jordi Schlooz:      ***
+***     https://github.com/jschlooz/                     ***
+***                                                      ***
+***     Please respect these banners in reuse of         ***
+***     this material.                                   ***
+***     These files have been created in my spare time.  ***
+***     For any questions you may always reach out       ***
+***     https://www.linkedin.com/in/jschlooz/            ***
+***                                                      ***
+************************************************************
+^C
+spanning-tree mode rapid-pvst
+!
+port-channel load-balance src-dst-ip
+!
+vlan 100
+ name SERVER
+vlan 200
+ name USER
+!
+! ===== PAgP Desirable =====
+int range e0/0-1
+ switchport trunk encaps dot1q
+ switchport mode trunk
+ channel-group 1 mode desirable
+!
+!
+! ===================================
+!
+! ===== PAgP Auto =====
+int range e0/0-1
+ switchport trunk encaps dot1q
+ switchport mode trunk
+ channel-group 1 mode auto
+!
